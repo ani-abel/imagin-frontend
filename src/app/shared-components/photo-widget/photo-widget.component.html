@@ -1,0 +1,24 @@
+<div class="album-widget text-center cursor-pointer" (dblclick)="openPicture()">
+  <p class="no-margin text-right">
+      <i class="fa fa-ellipsis-h trigger-file-actions" appOpenOptionTab #ref="appOpenOptionTab"></i>
+  </p>
+  <div class="dropdown-content text-left" [ngClass]="{ 'show':  ref.isOpen }">
+      <a
+       [href]="albumContent?.ViewLink"
+       [download]="albumContent?.FileName"
+       class="cursor-pointer">
+         <i class="fa fa-download"></i> Download
+      </a>
+      <a class="cursor-pointer" (click)="deletePicture()">
+        <i class="fa fa-trash"></i> Delete
+      </a>
+      <!-- <a href="#" class="cursor-pointer"><i class="fa fa-copy"></i> Copy</a>
+      <a href="#" class="cursor-pointer"><i class="fa fa-file-o"></i> Move</a> -->
+  </div>
+  <img [src]="albumContent?.ViewLink" [alt]="albumContent?.FileName" />
+  <h3
+    [title]="albumContent?.FileName"
+    class="text-uppercase no-margin">
+    {{ albumContent?.FileName | stripFilenamePrefix | shortenText }}
+  </h3>
+</div>

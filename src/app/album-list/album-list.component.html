@@ -1,0 +1,8 @@
+<div class="album-widget-container" *ngIf="(albums$ | async)?.length > 0; else defaultTemplate">
+  <app-album-widget 
+    *ngFor="let album of (albums$ | async)" 
+    [album]="album"></app-album-widget>
+</div>
+<ng-template #defaultTemplate>
+  <app-no-content></app-no-content>
+</ng-template>

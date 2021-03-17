@@ -1,0 +1,24 @@
+<!-- Modal for search for content on a root drive (Begins) -->
+<div class="modal-container" id="search-modal">
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">Search File(s)</h2>
+      <p class="modal-title-helper text-center no-margin">{{ currentFilePath$ | async }}</p>
+      <div class="modal-content">
+          <section class="scrollable-photo-holder">
+              <div class="album-widget-container" *ngIf="(searchResults$ | async)?.length > 0; else defaultTemplate">
+                <app-photo-widget
+                  [albumContent]="searchResult"
+                  *ngFor="let searchResult of (searchResults$ | async)">
+                </app-photo-widget>
+              </div>
+              <ng-template #defaultTemplate>
+                <app-no-content></app-no-content>
+              </ng-template>
+          </section>
+      </div>
+  </div>
+</div>
+<!-- Modal for search for content on a root drive (Ends) -->

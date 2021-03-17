@@ -1,0 +1,41 @@
+<app-image-gallery-slideshow
+  *ngIf="(currentModal$ | async) === 'PHOTO_GALLERY_SLIDESHOW' && (albumContents$ | async)?.length > 0">
+</app-image-gallery-slideshow>
+<app-image-gallery
+  *ngIf="(currentModal$ | async) === 'PHOTO_GALLERY_WITHOUT_SLIDESHOW' && (albumContents$ | async)?.length > 0">
+</app-image-gallery>
+
+<app-image-gallery-display *ngIf="(currentModal$ | async) === 'PHOTO_GALLERY_DISPLAY_SINGLE_PICTURE'"></app-image-gallery-display>
+
+<section class="scrollable-photo-holder">
+  <div class="album-widget-container" *ngIf="(albumContents$ | async)?.length > 0; else defaultTemplate">
+    <app-photo-widget
+      *ngFor="let albumContent of (albumContents$ | async)"
+      [albumContent]="albumContent">
+    </app-photo-widget>
+  </div>
+
+  <ng-template #defaultTemplate>
+    <app-no-content></app-no-content>
+  </ng-template>
+
+</section>
+<section class="photo-controls text-center">
+<ul class="no-margin">
+    <li>
+        <a class="cursor-pointer" id="open-gallery-slideshow" (click)="openGalleryWithSlideshowModal()">
+        <i class="fa fa-file-image-o" title="SLIDESHOW"></i>
+        </a>
+    </li>
+    <li>
+     <a class="cursor-pointer" id="open-gallery-view" (click)="openGalleryWithoutSlideshowModal()">
+        <i class="fa fa-picture-o" title="GALLERY"></i>
+     </a>
+ </li>
+ <li>
+     <a class="cursor-pointer" id="open-new-file-modal">
+        <i class="fa fa-plus" title="ADD PHOTO" (click)="openNewPictureModal()"></i>
+     </a>
+ </li>
+</ul>
+</section>

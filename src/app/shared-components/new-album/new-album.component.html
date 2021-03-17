@@ -1,0 +1,26 @@
+<!-- Modal for creating and adding new Folders (Begins) -->
+<div class="modal-container" id="new-folder-modal">
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">Create Album</h2>
+      <p class="modal-title-helper text-center no-margin">{{ currentFilePath$ | async }}</p>
+      <div class="modal-content">
+          <form [formGroup]="newAlbumForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <input [formControlName]="'albumName'"
+                    type="text"
+                    class="form-control"
+                    placeholder="What would you like your new album to be called?...">
+              </div>
+              <div class="form-group">
+                  <button type="submit"
+                    class="btn btn-primary"
+                    [disabled]="newAlbumForm.invalid">Create</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<!-- Modal for creating and adding new Folders (Ends) -->

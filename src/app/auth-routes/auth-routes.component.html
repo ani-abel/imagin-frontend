@@ -1,0 +1,56 @@
+<style>
+  .app-title {
+    margin-bottom: 50px;
+  }
+
+  .main-section {
+    top: 35vh;
+  }
+</style>
+
+<app-search
+  *ngIf="(currentModal$ | async) === 'SEARCH_FILES'"></app-search>
+
+<app-new-album
+  *ngIf="(currentModal$ | async) === 'CREATE_NEW_ALBUM'">
+</app-new-album>
+
+<app-new-file *ngIf="(currentModal$ | async) === 'CREATE_NEW_FILE'"></app-new-file>
+
+<app-drive-space
+  *ngIf="(driveSpace$ | async)"
+  [driveSpace]="(driveSpace$ | async)">
+</app-drive-space>
+
+<app-error-message-modal
+  *ngIf="(apiMessage$ | async)?.OperationType === 'FAILED'"
+  [message]="(apiMessage$ | async)">
+</app-error-message-modal>
+
+<app-success-message-modal
+  *ngIf="(apiMessage$ | async)?.OperationType === 'SUCCESSFUL'"
+  [message]="(apiMessage$ | async)">
+</app-success-message-modal>
+
+<app-loader *ngIf="(loading$ | async)"></app-loader>
+
+<main class="container">
+  <app-header-with-auth
+    [userData]="(userDetails$ | async)"
+    [currentFilePath]="(currentFilePath$ | async)">
+  </app-header-with-auth>
+  <section class="main-section text-center">
+    <img class="login-label" src="../assets/images/picture_title.png" />
+    <p class="file-dir">
+      <button
+        type="button"
+        [disabled]="(currentFilePath$ | async) === '/'"
+        [ngClass]="['previous-button', 'cursor-pointer']"
+        (click)="resetPath()">
+        <i class="fa fa-chevron-circle-left"></i>
+      </button>&nbsp;&nbsp; {{ currentFilePath$ | async }}
+    </p>
+    <router-outlet></router-outlet>
+  </section>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,46 @@
+<!-- Modal for creating and adding new Files(Begins) -->
+<div class="modal-container" id="new-file-modal">
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">Upload File(s)</h2>
+      <p class="modal-title-helper text-center no-margin">{{ currentFilePath$ | async }}</p>
+      <div class="modal-content">
+          <form>
+              <div class="form-group">
+                  <input
+                    type="file"
+                    id="file-selector"
+                    #fileSelector
+                    multiple
+                    accept="image/*"
+                    (change)="handleFiles()" />
+                  <button class="btn btn-danger" id="open-file-selector" (click)="fileSelector.click()">
+                      <i class="fa fa-file-o"></i> Select File(s)
+                  </button>
+              </div>
+
+              <section class="scrollable-photo-holder" *ngIf="selectedFiles?.length > 0; else defaultTemplate">
+                <div class="album-widget-container">
+                  <app-photo-widget-without-controls
+                    *ngFor="let file of selectedFiles"
+                    [file]="file">
+                  </app-photo-widget-without-controls>
+                </div>
+              </section>
+              <ng-template #defaultTemplate>
+                <app-no-content></app-no-content>
+              </ng-template>
+              <div class="form-group">
+                <button
+                  type="button"
+                  (click)="uploadFiles()"
+                  [disabled]="selectedFiles?.length < 1"
+                  class="btn btn-primary">Upload</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+<!-- Modal for creating and adding new Files(Ends) -->

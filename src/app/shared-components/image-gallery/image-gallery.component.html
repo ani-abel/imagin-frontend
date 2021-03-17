@@ -1,0 +1,28 @@
+<!-- Modal for Viewing images in Gallary format (Begins) -->
+<div class="modal-container gallery-modal" id="gallery-view">
+  <button class="gallery-navigation-btn btn-danger left"
+    (click)="previousImage()"
+    [disabled]="(currentImageLocation - 1) <= 0">
+    <i class="fa fa-angle-double-left"></i>
+  </button>
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">Gallery</h2>
+          <div class="modal-content">
+              <div class="image-container">
+                  <img
+                    [src]="albumContents[currentImageLocation - 1]?.ViewLink"
+                    [alt]="albumContents[currentImageLocation - 1]?.FileName" />
+              </div>
+              <h5 class="text-center no-margin image-pagination-counter">{{ currentImageLocation }}/{{ albumContents?.length }}</h5>
+          </div>
+  </div>
+  <button class="gallery-navigation-btn btn-danger right"
+    (click)="nextImage()"
+    [disabled]="currentImageLocation >= albumContents?.length">
+    <i class="fa fa-angle-double-right"></i>
+  </button>
+</div>
+<!-- Modal for Viewing images in Gallary format (Ends) -->

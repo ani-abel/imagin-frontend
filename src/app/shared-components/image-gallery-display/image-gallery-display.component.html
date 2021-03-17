@@ -1,0 +1,17 @@
+ <!-- Modal for viewing images as slideshow (Begins) -->
+ <div class="modal-container gallery-modal" id="gallery-slideshow">
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">{{ albumContent?.FileName | uppercase }}</h2>
+          <div class="modal-content">
+              <div class="image-container">
+                  <img
+                    [src]="albumContent?.ViewLink"
+                    [alt]="albumContent?.FileName" />
+              </div>
+          </div>
+  </div>
+</div>
+<!-- Modal for viewing images as slideshow (Ends) -->

@@ -1,0 +1,29 @@
+<!-- Modal for getting info on the Cloud drive (Begins) -->
+<div class="modal-container" id="cloud-disk-drive-modal">
+  <div class="modal">
+      <p class="modal-close no-margin text-right">
+        <i class="fa fa-close cursor-pointer close-modal" (click)="closeModal()"></i>
+      </p>
+      <h2 class="modal-title no-margin text-center">Disk Space</h2>
+      <div class="modal-content">
+          <div class="disk-storage-container">
+              <p><img src="../assets/images/google-drive-logo.png" alt="Google drive logo"></p>
+              <h3 class="no-margin">Google Drive</h3>
+              <div class="progress-div">
+                  <div class="progess-label">
+                      <div class="progress-label-widget">
+                          {{ driveSpace?.UsedSpaceInMB | convertToGigabyte }}GB
+                      </div>
+                      <div class="progress-label-widget text-right">
+                        {{ driveSpace?.TotalSpaceInMB | convertToGigabyte }}GB
+                      </div>
+                  </div>
+                  <progress id="file"
+                    [value]="driveSpace?.UsedSpaceInMB"
+                    [max]="driveSpace?.TotalSpaceInMB"> 32% </progress>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Modal for getting info on the Cloud drive (Ends) -->

@@ -1,0 +1,15 @@
+<div class="album-widget text-center cursor-pointer" (dblclick)="openAlbum()">
+  <p class="no-margin text-right">
+    <i class="fa fa-ellipsis-h trigger-file-actions" appOpenOptionTab #ref="appOpenOptionTab"></i>
+  </p>
+  <div class="dropdown-content text-left" [ngClass]="{ 'show':  ref.isOpen }">
+      <a class="cursor-pointer">
+        <i class="fa fa-download"></i> Download
+      </a>
+      <a class="cursor-pointer">
+        <i class="fa fa-trash"></i> Delete
+      </a>
+  </div>
+  <img src="../assets/images/album_icon3.png" [title]="album?.FolderName" />
+  <h3 class="text-uppercase no-margin">{{ album?.FolderName | stripFilenamePrefix | shortenText }}</h3>
+</div>
